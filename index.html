@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PilotAF pour le PAF 2027</title>
+<meta name="description" content="PilotAF, le logiciel de pilotage financier des Alliances Françaises : budget prévisionnel, scénarios, rapports pré-remplis. Le volet pilotage financier de votre dossier PAF 2027.">
+<!-- Page non indexée tant que ses affirmations ne sont pas validées par Sylvain. Retirer la ligne suivante pour l'ouvrir aux moteurs de recherche. -->
+<meta name="robots" content="noindex, nofollow">
+<style>img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#FBFAF7; --surface:#FFFFFF; --ink:#1C1F26; --ink-2:#4A4F5A; --muted:#7A7F8A;
+  --line:#E4E1DA; --line-2:#D2CEC5; --accent:#C8102E; --accent-ink:#FFFFFF; --accent-soft:#FBEAEA;
+  --marine:#1F3A5F; --marine-soft:#E8EEF5; --ok:#1E7A4B; --ok-soft:#E4F3EA; --sa:#1E7A4B; --sb:#7A4A9E;
+  --shadow:0 1px 2px rgba(28,31,38,.06), 0 8px 24px rgba(28,31,38,.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#15171C; --surface:#1E2128; --ink:#F1EFEA; --ink-2:#C9C6BE; --muted:#8F949E;
+    --line:#2C3038; --line-2:#3A3F49; --accent:#E8324C; --accent-ink:#FFFFFF; --accent-soft:#3A1E24;
+    --marine:#9DB7D8; --marine-soft:#232C3A; --ok:#5BC48A; --ok-soft:#1E3328; --sa:#5BC48A; --sb:#B48AD8;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#15171C; --surface:#1E2128; --ink:#F1EFEA; --ink-2:#C9C6BE; --muted:#8F949E;
+  --line:#2C3038; --line-2:#3A3F49; --accent:#E8324C; --accent-ink:#FFFFFF; --accent-soft:#3A1E24;
+  --marine:#9DB7D8; --marine-soft:#232C3A; --ok:#5BC48A; --ok-soft:#1E3328; --sa:#5BC48A; --sb:#B48AD8;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:"Newsreader",Georgia,"Times New Roman",serif;font-weight:500;line-height:1.15;margin:0;text-wrap:balance;letter-spacing:-.005em}
+h1{font-size:clamp(34px,5vw,52px)}
+h2{font-size:clamp(26px,3.4vw,36px)}
+h3{font-size:22px}
+p{margin:0}
+a{color:inherit}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+.narrow{max-width:680px}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.lede{font-size:20px;color:var(--ink-2);line-height:1.5}
+section{padding:72px 0}
+section+section{border-top:1px solid var(--line)}
+.hero+.promises{border-top:1px solid var(--line)}
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:var(--accent-ink);text-decoration:none;font-weight:600;font-size:16px;padding:14px 22px;border-radius:6px;border:0;cursor:pointer}
+.btn:hover{filter:brightness(1.08)}
+.btn:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var(--marine);outline-offset:3px}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line-2)}
+
+/* bandeau */
+.band{background:var(--marine);color:#fff;font-size:15px;padding:12px 0}
+.band .wrap{display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:space-between}
+.band strong{font-weight:600}
+.band .date{background:rgba(255,255,255,.14);padding:4px 10px;border-radius:4px;font-variant-numeric:tabular-nums;white-space:nowrap}
+:root[data-theme="dark"] .band, :root:not([data-theme="light"]) .band{color:#fff}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .band{background:#233C61} }
+:root[data-theme="dark"] .band{background:#233C61}
+
+/* header */
+header.top{padding:22px 0;border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.logo{display:inline-flex;text-decoration:none}
+.logo .pill{display:flex;align-items:center;gap:9px;background:#C41230;color:#fff;border-radius:10px;padding:7px 14px;height:42px;font-family:-apple-system,"system-ui","Segoe UI",sans-serif}
+.logo .bars{display:flex;align-items:flex-end;gap:2px;height:18px}
+.logo .bars i{display:block;width:3px;background:#fff;border-radius:1px}
+.logo .bars i:nth-child(1){height:7px}.logo .bars i:nth-child(2){height:13px}.logo .bars i:nth-child(3){height:18px}
+.logo .stack{display:flex;flex-direction:column;line-height:1}
+.logo .name{font-size:18px;font-weight:800;letter-spacing:-.02em}
+.logo .sub{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;opacity:.8;margin-top:2px}
+.top a.cta{font-size:15px;font-weight:600;text-decoration:none;color:var(--accent)}
+
+/* hero */
+.hero{padding:72px 0 0;border-bottom:0}
+.hero-head{max-width:720px;margin:0 auto;text-align:center;display:flex;flex-direction:column;gap:20px;align-items:center}
+.hero-head h1{font-size:clamp(44px,7vw,80px);letter-spacing:-.015em;line-height:1.02}
+.hero-head .lede{max-width:600px}
+.hero .actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.hero-shot{position:relative;max-width:820px;margin:56px auto 0;padding-right:120px}
+.frame.big{box-shadow:0 2px 4px rgba(28,31,38,.06),0 24px 60px rgba(28,31,38,.14)}
+.phone{position:absolute;right:0;bottom:-36px;width:216px;margin:0;background:#111;border-radius:34px;padding:10px;box-shadow:0 20px 50px rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.12)}
+.phone .screen-clip{border-radius:26px;overflow:hidden;aspect-ratio:9/17;background:#fff}
+.phone .notch{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:70px;height:18px;background:#111;border-radius:0 0 12px 12px;z-index:2}
+.phone img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
+.hero-cap{text-align:center;font-size:13px;color:var(--muted);max-width:620px;margin:44px auto 0;padding-bottom:56px}
+.promises{display:block}
+.promises .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.promise h3{font-size:24px}
+.promise p{color:var(--ink-2);font-size:15px;margin-top:8px;max-width:38ch}
+.frame{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow);overflow:hidden}
+.frame .bar{display:flex;align-items:center;gap:6px;padding:9px 12px;border-bottom:1px solid var(--line);background:var(--bg)}
+.frame .bar i{width:10px;height:10px;border-radius:50%;background:var(--line-2);display:inline-block}
+.frame .bar span{margin-left:10px;font-size:12px;color:var(--muted);background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:2px 10px;flex:1;text-align:center}
+.frame img{display:block;width:100%;height:auto}
+.frame figcaption{padding:10px 14px;font-size:13px;color:var(--muted);border-top:1px solid var(--line)}
+/* écrans (onglets) */
+.tabs{display:flex;gap:8px;margin-top:36px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.tab{appearance:none;background:none;border:0;border-bottom:3px solid transparent;margin-bottom:-1px;padding:12px 16px;font:inherit;font-weight:600;font-size:16px;color:var(--muted);cursor:pointer;display:inline-flex;align-items:center;gap:10px}
+.tab .n{width:24px;height:24px;border-radius:50%;border:1px solid var(--line-2);display:grid;place-items:center;font-size:12px;font-family:"Newsreader",Georgia,serif}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+.tab[aria-selected="true"] .n{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.tab:hover{color:var(--ink)}
+.panel[hidden]{display:none}
+.panel{display:grid;grid-template-columns:.9fr 1.1fr;gap:40px;align-items:center;padding-top:36px}
+.panel .txt{display:flex;flex-direction:column;gap:14px}
+.panel .txt h3{font-size:26px}
+.panel .txt p{color:var(--ink-2);font-size:16px;max-width:46ch}
+.panel .txt .out{font-size:14px;color:var(--ink);background:var(--ok-soft);border-radius:6px;padding:8px 12px;display:inline-block;align-self:flex-start}
+.panel .frame img{max-height:520px;object-fit:cover;object-position:top}
+.sim{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px 18px;display:flex;flex-direction:column;gap:10px}
+.sim label{display:flex;justify-content:space-between;font-size:14px;color:var(--ink-2)}
+.sim output{font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums}
+.sim input[type=range]{width:100%;accent-color:var(--accent)}
+.sim .res{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:10px}
+.sim .res .k{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.sim .res strong{font-family:"Newsreader",Georgia,serif;font-size:28px;font-variant-numeric:tabular-nums;line-height:1}
+.sim .res.ok strong{color:var(--ok)} .sim .res.ko strong{color:var(--accent)}
+.sim .res .d{font-size:13px;color:var(--muted)}
+.chartwrap{padding:12px 8px 8px}
+#chart{width:100%;height:auto;display:block}
+#chart .grid{stroke:var(--line);stroke-width:1}
+#chart .ax{font:11px "IBM Plex Sans",sans-serif;fill:var(--muted)}
+#chart .lab{font:12px "IBM Plex Sans",sans-serif;fill:var(--ink)}
+#chart .zone{fill:var(--bg)}
+#chart .la{fill:none;stroke:var(--sa);stroke-width:2.5;stroke-linejoin:round}
+#chart .lb{fill:none;stroke:var(--sb);stroke-width:2.5;stroke-linejoin:round}
+#chart .proj{stroke-dasharray:6 5}
+#chart .pa{fill:var(--sa);stroke:var(--surface);stroke-width:2} #chart .pb{fill:var(--sb);stroke:var(--surface);stroke-width:2}
+#chart .gapPos{fill:var(--ok);opacity:.14} #chart .gapNeg{fill:var(--accent);opacity:.16}
+.legend{display:flex;gap:18px;font-size:13px;color:var(--ink-2);padding:6px 10px 4px}
+.legend i{display:inline-block;width:14px;height:3px;vertical-align:middle;margin-right:6px;border-radius:2px}
+.legend .sa{background:var(--sa)} .legend .sb{background:var(--sb)} .legend .proj{background:repeating-linear-gradient(90deg,var(--muted) 0 4px,transparent 4px 7px)}
+/* anciennes rangées */
+.screens{display:flex;flex-direction:column;gap:56px;margin-top:44px}
+.screen{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.screen:nth-child(even) .txt{order:2}
+.screen .txt{display:flex;flex-direction:column;gap:12px}
+.screen .txt .lab{font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--accent)}
+.screen .txt h3{font-size:26px}
+.screen .txt p{color:var(--ink-2);font-size:16px;max-width:46ch}
+.screen .txt .out{font-size:14px;color:var(--ink);background:var(--ok-soft);border-radius:6px;padding:8px 12px;display:inline-block;align-self:flex-start}
+.screen .frame img{max-height:520px;object-fit:cover;object-position:top}
+
+/* match */
+.pairs{display:flex;flex-direction:column;gap:14px;margin-top:36px}
+.pair{display:grid;grid-template-columns:1fr 44px 1fr;gap:16px;align-items:stretch}
+.pair .cell{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:20px 22px}
+.pair .cell .lab{font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--muted);margin-bottom:8px}
+.pair .cell.right .lab{color:var(--accent)}
+.pair .cell q{font-family:"Newsreader",Georgia,serif;font-size:20px;quotes:"« " " »";line-height:1.3}
+.pair .cell p{color:var(--ink-2);font-size:16px;margin-top:8px}
+.pair .link{display:grid;place-items:center;color:var(--line-2)}
+.pair .link svg{display:block}
+.pairs-head{display:grid;grid-template-columns:1fr 44px 1fr;gap:16px;margin-top:40px;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.pairs-head span:last-child{color:var(--accent)}
+
+/* programme */
+.modules{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px}
+.module{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:24px;display:flex;flex-direction:column;gap:12px}
+.module .num{font-family:"Newsreader",Georgia,serif;font-size:15px;color:var(--muted);font-variant-numeric:tabular-nums}
+.module h3{font-size:22px}
+.module p{color:var(--ink-2);font-size:16px}
+.module ul{margin:0;padding-left:18px;color:var(--ink-2);font-size:15px;display:flex;flex-direction:column;gap:4px}
+.facts{margin-top:28px;display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--surface)}
+.fact{padding:18px 20px;border-right:1px solid var(--line)}
+.fact:last-child{border-right:0}
+.fact .k{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.fact .v{font-size:16px;margin-top:4px}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px;position:relative}
+.step{position:relative;padding-top:18px;border-top:2px solid var(--line-2)}
+.step .when{position:absolute;top:-13px;left:0;background:var(--bg);padding-right:10px;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+.step h3{font-size:21px;margin-bottom:8px}
+.step p{color:var(--ink-2);font-size:16px}
+.deadline{margin-top:36px;display:flex;gap:14px;align-items:flex-start;background:var(--marine-soft);border-radius:8px;padding:18px 20px;font-size:15px;color:var(--ink-2)}
+.deadline strong{color:var(--ink)}
+.deadline .d{font-family:"Newsreader",Georgia,serif;font-size:30px;line-height:1;color:var(--marine);font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* proof + people */
+.proof{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.proof blockquote{margin:0;font-family:"Newsreader",Georgia,serif;font-size:24px;line-height:1.35;font-style:italic;font-weight:400;color:var(--ink)}
+.proof .who{margin-top:12px;font-size:14px;color:var(--muted);font-style:normal}
+.people{display:flex;flex-direction:column;gap:22px}
+.person{display:grid;grid-template-columns:56px 1fr;gap:16px;align-items:start}
+.person .av{width:56px;height:56px;border-radius:50%;background:var(--marine-soft);display:grid;place-items:center;font-family:"Newsreader",Georgia,serif;font-size:20px;color:var(--marine);object-fit:cover}
+.person h3{font-size:18px;font-family:"IBM Plex Sans",sans-serif;font-weight:600}
+.person p{font-size:15px;color:var(--ink-2)}
+.pilots{margin-top:28px;display:flex;gap:10px;flex-wrap:wrap}
+.pill{font-size:14px;padding:6px 12px;border-radius:999px;border:1px solid var(--line-2);color:var(--ink-2);display:inline-flex;align-items:center;gap:8px}
+.pill i{width:8px;height:8px;border-radius:50%;background:var(--ok);display:inline-block}
+
+/* faq */
+.faq{margin-top:28px;border-top:1px solid var(--line)}
+details{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;list-style:none;padding:18px 0;font-size:18px;font-weight:500;display:flex;justify-content:space-between;gap:16px;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:"Newsreader",Georgia,serif;font-size:26px;color:var(--muted);line-height:1;flex:none}
+details[open] summary::after{content:"–"}
+details p{padding:0 0 18px;color:var(--ink-2);font-size:16px;max-width:64ch}
+
+/* final */
+.final{background:var(--surface)}
+.final .box{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center}
+.final .contact{font-size:15px;color:var(--ink-2);display:flex;flex-direction:column;gap:6px}
+.mailbox{display:flex;flex-direction:column;gap:10px;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:20px;margin-bottom:16px}
+.mailbox .k{font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--muted)}
+.mailbox .addr{font-family:"Newsreader",Georgia,serif;font-size:26px;color:var(--ink);word-break:break-all;user-select:all}
+.mailbox .btn{align-self:flex-start}
+.mailbox .hint{font-size:13px;color:var(--muted)}
+footer{padding:28px 0 40px;font-size:13px;color:var(--muted)}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+@media (max-width:820px){
+  section{padding:52px 0}
+  .hero{padding:44px 0 0}
+  .hero-shot{padding-right:0;margin-top:36px;margin-bottom:24px}
+  .phone{width:118px;right:-4px;bottom:-30px;padding:6px;border-radius:22px}
+  .phone .screen-clip{border-radius:17px}
+  .phone .notch{width:40px;height:10px;top:6px}
+  .hero-cap{margin-top:36px}
+  .promises .wrap{grid-template-columns:1fr;gap:24px}
+  .panel{grid-template-columns:1fr;gap:20px}
+  .tab{padding:10px 12px;font-size:15px}
+  .pair,.pairs-head{grid-template-columns:1fr}
+  .pairs-head span:first-child,.pair .link{display:none}
+  .modules,.steps{grid-template-columns:1fr}
+  .facts{grid-template-columns:1fr 1fr}
+  .fact:nth-child(2){border-right:0}
+  .fact:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .proof,.final .box{grid-template-columns:1fr;gap:32px}
+  .top a.cta{display:none}
+}
+@media (prefers-reduced-motion:no-preference){
+  }
+</style>
+</head>
+<body>
+
+
+<div class="band"><div class="wrap">
+  <span><strong>Appel à projets « Plan d'appui à la formation 2027 »</strong> de l'Institut français : dossiers à déposer sur l'Espace Réseau</span>
+  <span class="date">avant le 30 octobre 2026, minuit (Paris)</span>
+</div></div>
+
+<header class="top"><div class="wrap">
+  <a class="logo" href="#" aria-label="PilotAF"><span class="pill"><span class="bars"><i></i><i></i><i></i></span><span class="stack"><span class="name">PilotAF</span><span class="sub">Tableau de bord</span></span></span></a>
+  <a class="cta" href="#contact">Nous écrire →</a>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <div class="hero-head">
+    <p class="eyebrow">Pour les directions d'Alliance Française et d'Institut français</p>
+    <h1>Sachez où va votre Alliance.</h1>
+    <p class="lede">PilotAF est le logiciel de pilotage financier des Alliances Françaises et des Instituts français, conçu par un ancien directeur d'Alliance. Budget prévisionnel, scénarios, rapports pré-remplis, sur ordinateur et sur téléphone.</p>
+    <div class="actions">
+      <a class="btn" href="#ecrans">Voir l'outil</a>
+      <a class="btn ghost" href="#dossier">Pour votre dossier PAF 2027</a>
+    </div>
+  </div>
+  <div class="hero-shot">
+    <figure class="frame big">
+      <div class="bar"><i></i><i></i><i></i><span>pilotaf.app</span></div>
+      <img src="img/hero-tableau-de-bord.png" alt="Tableau de bord PilotAF d'une Alliance : indicateurs 2026, projection de fin d'année et courbes recettes / dépenses" width="690" height="648">
+    </figure>
+    <figure class="phone">
+      <div class="notch"></div>
+      <div class="screen-clip"><img src="img/mobile.png" alt="PilotAF sur téléphone : indicateurs de l'Alliance, trésorerie, inscriptions" width="554" height="952"></div>
+    </figure>
+  </div>
+  <p class="hero-cap">Démonstration avec des données fictives, image de l'AF de Chiang Mai avec son autorisation. Sur ordinateur et sur téléphone, en français et en anglais.</p>
+</div></section>
+
+<section class="promises"><div class="wrap">
+  <div class="promise"><h3>Vos données restent les vôtres.</h3><p>Hébergées en France, séparées de l'application. L'Alliance choisit ce qui remonte à la coordination, ligne par ligne.</p></div>
+  <div class="promise"><h3>Votre Alliance garde sa mémoire.</h3><p>Tout l'historique, sur autant d'années que vous voulez, et les budgets restent dans l'établissement quand la direction change.</p></div>
+  <div class="promise"><h3>Vous n'êtes pas prisonnier.</h3><p>Export complet en PDF et CSV à tout moment. Vos données sortent aussi facilement qu'elles sont entrées.</p></div>
+</div></section>
+
+
+
+<section id="ecrans"><div class="wrap">
+  <div class="narrow">
+    <p class="eyebrow">Comment ça marche</p>
+    <h2>Une saisie par mois. Tout le reste en découle.</h2>
+    <p class="lede" style="margin-top:16px">Cinq écrans suffisent à comprendre le logiciel. Le troisième se manipule : essayez.</p>
+  </div>
+  <div class="tabs" role="tablist" aria-label="Les écrans de PilotAF">
+    <button class="tab" role="tab" id="tab-saisir" aria-controls="pan-saisir" aria-selected="false" type="button"><span class="n">1</span>Saisir</button>
+    <button class="tab" role="tab" id="tab-voir" aria-controls="pan-voir" aria-selected="false" type="button"><span class="n">2</span>Voir</button>
+    <button class="tab" role="tab" id="tab-prevoir" aria-controls="pan-prevoir" aria-selected="true" type="button"><span class="n">3</span>Prévoir</button>
+    <button class="tab" role="tab" id="tab-rendre" aria-controls="pan-rendre" aria-selected="false" type="button"><span class="n">4</span>Rendre compte</button>
+    <button class="tab" role="tab" id="tab-reseau" aria-controls="pan-reseau" aria-selected="false" type="button"><span class="n">5</span>Piloter un réseau</button>
+  </div>
+
+  <div class="panel" id="pan-saisir" role="tabpanel" aria-labelledby="tab-saisir" hidden>
+    <div class="txt"><h3>Dix minutes par mois, dans les comptes de l'établissement</h3><p>La comptabilité locale garde ses codes et ses intitulés. Chaque ligne est reliée une fois pour toutes aux catégories de la Fondation et du ministère : c'est la seule porte d'entrée des données, et il n'y a rien d'autre à ressaisir ensuite.</p><span class="out">Résultat : un historique propre, comparable d'une année à l'autre</span></div>
+    <figure class="frame"><div class="bar"><i></i><i></i><i></i><span>Saisie mensuelle · septembre 2026</span></div><img src="img/saisie-mensuelle.png" alt="Écran de saisie mensuelle PilotAF : lignes de recettes avec le réalisé de l'année précédente en regard" width="650" height="600"></figure>
+  </div>
+
+  <div class="panel" id="pan-voir" role="tabpanel" aria-labelledby="tab-voir" hidden>
+    <div class="txt"><h3>Le tableau de bord que le conseil d'administration comprend</h3><p>Trésorerie en jours de réserve, taux d'autofinancement, inscriptions, heures vendues, certifications, et la projection de fin d'année si le reste de l'année continue au même rythme.</p><span class="out">Résultat : savoir en juin comment l'année finira</span></div>
+    <figure class="frame"><div class="bar"><i></i><i></i><i></i><span>Tableau de bord · vue direction</span></div><img src="img/tableau-de-bord.png" alt="Tableau de bord PilotAF : bilan, jours de réserve, inscriptions, recettes et dépenses par mois" width="566" height="640"></figure>
+  </div>
+
+  <div class="panel" id="pan-prevoir" role="tabpanel" aria-labelledby="tab-prevoir">
+    <div class="txt"><h3>« Et si les cours de langue baissent ? »</h3><p>Déplacez le curseur. La courbe se redessine et le résultat de fin d'année change sous vos yeux. C'est ce que le directeur fait avant de décider : prix des cours, subvention en retard, masse salariale, loyer.</p>
+      <div class="sim">
+        <label for="sl"><span>Cours de langue, juillet à décembre</span><output id="slv">0 %</output></label>
+        <input type="range" id="sl" min="-30" max="30" step="1" value="0" aria-describedby="res">
+        <div class="res" id="res"><span class="k">Résultat projeté 2026</span><strong id="resv">+76 000 ฿</strong><span class="d" id="resd">objectif atteint</span></div>
+      </div>
+      <span class="out">Résultat : des scénarios chiffrés, l'axe « prospective » du PAF en pratique</span></div>
+    <figure class="frame chart"><div class="bar"><i></i><i></i><i></i><span id="chart-title">Projection 2026 · recettes et dépenses par mois</span></div>
+      <div class="chartwrap"><svg id="chart" viewBox="0 0 640 340" role="img" aria-label="Recettes et dépenses mensuelles 2026, réalisé de janvier à juin, projection de juillet à décembre"></svg>
+      <div class="legend"><span><i class="sa"></i>Recettes</span><span><i class="sb"></i>Dépenses</span><span><i class="proj"></i>Projection</span></div></div>
+    </figure>
+  </div>
+
+  <div class="panel" id="pan-rendre" role="tabpanel" aria-labelledby="tab-rendre" hidden>
+    <div class="txt"><h3>Le questionnaire de la Fondation, la fiche pays, le rapport de CA : déjà remplis</h3><p>Les questions 16, 17 et 18 du questionnaire annuel FAF se remplissent depuis la saisie mensuelle. La fiche pays MEAE, le rapport de conseil d'administration et l'export Excel ou PDF sortent du même endroit.</p><span class="out">Résultat : des heures de ressaisie rendues à l'équipe chaque année</span></div>
+    <figure class="frame"><div class="bar"><i></i><i></i><i></i><span>Rapports · questionnaire FAF pré-rempli</span></div><img src="img/questionnaire-faf.png" alt="Questionnaire FAF pré-rempli dans PilotAF : questions 16 et 17, bilan financier et recettes 2026 calculées automatiquement" width="550" height="590"></figure>
+  </div>
+
+  <div class="panel" id="pan-reseau" role="tabpanel" aria-labelledby="tab-reseau" hidden>
+    <div class="txt"><h3>La vue coordination : tout le réseau sur un écran</h3><p>Pour un coordinateur national ou régional : la carte des Alliances, les indicateurs consolidés, le comparatif financier entre établissements, l'évolution sur plusieurs années. C'est la version faite pour un PAF national ou sous-régional.</p><p>Chaque Alliance décide de ce qui remonte, ligne par ligne. Une Alliance qui ne souhaite rien partager garde une version entièrement étanche.</p><span class="out">Résultat : un réseau piloté avec les mêmes chiffres, sans tableur consolidé à la main</span></div>
+    <figure class="frame"><div class="bar"><i></i><i></i><i></i><span>Vue coordination · réseau de 23 Alliances (données fictives)</span></div><img src="img/vue-reseau-france.png" alt="Vue coordination PilotAF : carte de France des Alliances, indicateurs consolidés du réseau, comparatif financier entre villes" width="1200" height="834"></figure>
+  </div>
+</div></section>
+<script>
+(function(){
+  // onglets
+  var tabs=[].slice.call(document.querySelectorAll('.tab'));
+  function show(id){tabs.forEach(function(b){var on=b.id===id;b.setAttribute('aria-selected',on?'true':'false');document.getElementById(b.getAttribute('aria-controls')).hidden=!on;});}
+  tabs.forEach(function(b){b.addEventListener('click',function(){show(b.id);});b.addEventListener('keydown',function(e){var i=tabs.indexOf(b);if(e.key==='ArrowRight'){tabs[(i+1)%tabs.length].focus();show(tabs[(i+1)%tabs.length].id);}if(e.key==='ArrowLeft'){tabs[(i+tabs.length-1)%tabs.length].focus();show(tabs[(i+tabs.length-1)%tabs.length].id);}});});
+
+  // simulateur (chiffres de la démo PilotAF, AF de Chiang Mai, données fictives, en bahts)
+  var recR=[405000,375000,340000,385000,425000,386243], depR=[380000,395000,425000,360000,390000,328242];
+  var recP=(4632485-2316243)/6, depP=(4556485-2278242)/6, langues=212647; // part cours de langue dans un mois projeté
+  var months=['J','F','M','A','M','J','J','A','S','O','N','D'];
+  var svg=document.getElementById('chart'), sl=document.getElementById('sl'), slv=document.getElementById('slv'), resv=document.getElementById('resv'), resd=document.getElementById('resd'), resbox=document.getElementById('res');
+  var W=640,H=340,L=58,R=104,T=18,B=34, y0=250000,y1=520000;
+  function X(i){return L+(W-L-R)*i/11;} function Y(v){return T+(H-T-B)*(1-(v-y0)/(y1-y0));}
+  function fmt(n){var s=Math.round(Math.abs(n)).toString().replace(/\B(?=(\d{3})+(?!\d))/g,' ');return (n<0?'−':'+')+s+' ฿';}
+  function path(arr,from,to){var d='';for(var i=from;i<=to;i++){d+=(i===from?'M':'L')+X(i).toFixed(1)+' '+Y(arr[i]).toFixed(1)+' ';}return d;}
+  function draw(pct){
+    var rec=recR.concat([0,0,0,0,0,0].map(function(){return recP+langues*pct/100;}));
+    var dep=depR.concat([0,0,0,0,0,0].map(function(){return depP;}));
+    var s='';
+    // grille
+    [250000,300000,350000,400000,450000,500000].forEach(function(v){s+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+Y(v)+'" y2="'+Y(v)+'" class="grid"/><text x="'+(L-8)+'" y="'+(Y(v)+4)+'" class="ax" text-anchor="end">'+(v/1000)+'k</text>';});
+    months.forEach(function(m,i){s+='<text x="'+X(i)+'" y="'+(H-12)+'" class="ax" text-anchor="middle">'+m+'</text>';});
+    // zone projetée
+    s+='<rect x="'+((X(5)+X(6))/2)+'" y="'+T+'" width="'+(W-R-(X(5)+X(6))/2)+'" height="'+(H-T-B)+'" class="zone"/>';
+    s+='<text x="'+((X(5)+X(6))/2+8)+'" y="'+(T+14)+'" class="ax">projection</text>';
+    // écart (positif vert, négatif rouge) sur la projection
+    var pos=rec[6]>=dep[6];
+    var poly='';for(var i=5;i<=11;i++){poly+=(i===5?'M':'L')+X(i).toFixed(1)+' '+Y(rec[i]).toFixed(1)+' ';}for(var j=11;j>=5;j--){poly+='L'+X(j).toFixed(1)+' '+Y(dep[j]).toFixed(1)+' ';}
+    s+='<path d="'+poly+'Z" class="'+(pos?'gapPos':'gapNeg')+'"/>';
+    // lignes réalisées
+    s+='<path d="'+path(dep,0,5)+'" class="lb"/><path d="'+path(rec,0,5)+'" class="la"/>';
+    // lignes projetées
+    s+='<path d="'+path(dep,5,11)+'" class="lb proj"/><path d="'+path(rec,5,11)+'" class="la proj"/>';
+    // points de juin et décembre
+    s+='<circle cx="'+X(5)+'" cy="'+Y(rec[5])+'" r="4" class="pa"/><circle cx="'+X(5)+'" cy="'+Y(dep[5])+'" r="4" class="pb"/>';
+    s+='<circle cx="'+X(11)+'" cy="'+Y(rec[11])+'" r="4" class="pa"/><circle cx="'+X(11)+'" cy="'+Y(dep[11])+'" r="4" class="pb"/>';
+    // étiquettes directes fin d'année
+    var ya=Y(rec[11]), yb=Y(dep[11]); if(Math.abs(ya-yb)<16){ if(ya<yb){ya-=8;yb+=8;} else {ya+=8;yb-=8;} }
+    s+='<text x="'+(X(11)+10)+'" y="'+(ya+4)+'" class="lab">Recettes '+Math.round(rec[11]/1000)+'k</text>';
+    s+='<text x="'+(X(11)+10)+'" y="'+(yb+4)+'" class="lab">Dépenses '+Math.round(dep[11]/1000)+'k</text>';
+    svg.innerHTML=s;
+    var tot=rec.reduce(function(a,b){return a+b;},0)-dep.reduce(function(a,b){return a+b;},0);
+    resv.textContent=fmt(tot); resbox.className='res '+(tot>=0?'ok':'ko');
+    resd.textContent= tot>=0 ? (pct===0?'objectif atteint':'encore positif, marge réduite') : 'l’année finit en déficit';
+    slv.textContent=(pct>0?'+':'')+pct+' %';
+  }
+  sl.addEventListener('input',function(){draw(parseInt(sl.value,10));});
+  draw(0);
+})();
+</script>
+
+<section id="dossier"><div class="wrap">
+  <div class="narrow">
+    <p class="eyebrow">Vous montez un dossier PAF 2027 ?</p>
+    <h2>Le volet pilotage financier est déjà rédigé. Nous vous le fournissons, vous l'intégrez.</h2>
+    <p class="lede" style="margin-top:16px">Votre projet couvre bien plus que la gestion. Pour la partie qui concerne PilotAF, nous vous envoyons des paragraphes prêts à coller dans votre dossier, dans le vocabulaire de l'appel, adaptés à votre réseau.</p>
+  </div>
+  <div class="modules">
+    <article class="module"><h3>L'outil et les standards</h3><p>Ce qu'est PilotAF, sur quels référentiels il s'appuie (Fondation, MEAE), et ce qu'il change dans la gestion d'un établissement. Avec captures d'écran libres d'usage.</p></article>
+    <article class="module"><h3>Objectifs et indicateurs</h3><p>Budget prévisionnel produit et suivi chaque mois, taux d'autofinancement et cofinancements suivis, rapports Fondation, MEAE et CA générés sans ressaisie.</p></article>
+    <article class="module"><h3>Données, sécurité, budget</h3><p>Hébergement en France, RGPD, sauvegardes, maîtrise des données par l'établissement. Et la ligne budgétaire : mise en route, prise en main, abonnement.</p></article>
+  </div>
+  <div class="steps">
+    <div class="step"><span class="when">Cette semaine</span><h3>Trente minutes avec vous</h3><p>Votre projet, vos établissements, la place que le pilotage y prend.</p></div>
+    <div class="step"><span class="when">Sous 5 jours</span><h3>Les paragraphes adaptés</h3><p>Avec vos établissements et vos chiffres, prêts à relire et à coller.</p></div>
+    <div class="step"><span class="when">Avant le 30 octobre</span><h3>Vous déposez</h3><p>Sur l'Espace Réseau, en votre nom, avec le reste de votre projet.</p></div>
+  </div>
+  <div class="deadline"><span class="d">15 oct.</span><p>Pour laisser une semaine de relecture à votre coordination et à votre COCAC, nous vous proposons un premier échange avant le 15 octobre.</p></div>
+</div></section>
+
+<section id="preuve"><div class="wrap">
+  <div class="proof">
+    <div>
+      <p class="eyebrow">Déjà en service</p>
+      <h2 style="margin-top:10px">Un logiciel construit dans une Alliance, par un directeur qui cherchait ses chiffres.</h2>
+      <div class="pilots">
+        <span class="pill"><i></i>Alliance Française de Chiang Mai</span>
+        <span class="pill"><i></i>Alliance Française de Phuket</span>
+        <span class="pill">Version coordination pour les réseaux nationaux</span>
+      </div>
+      <blockquote style="margin-top:28px">« Beaucoup d'Alliances commencent l'année sans savoir où elles vont. Le budget prévisionnel n'est pas un rapport de plus, c'est ce qui permet de dire non à temps. »<div class="who">Sylvain, à l'origine de PilotAF</div></blockquote>
+    </div>
+    <div class="people">
+      <div class="person"><img class="av" src="img/sylvain.jpg" alt="Sylvain" width="56" height="56"><div><h3>Sylvain</h3><p>Ancien directeur d'Alliance Française (Bangkok, Odessa) et coordinateur national en ambassade pendant plus de dix ans. A participé à l'élaboration de la démarche qualité du ministère. Il a écrit PilotAF pour son propre pilotage avant de l'ouvrir au réseau.</p></div></div>
+      <div class="person"><img class="av" src="img/pauline.jpg" alt="Pauline" width="56" height="56"><div><h3>Pauline</h3><p>Deux ans en Alliance Française à Bangkok, aujourd'hui en marketing et communication. Elle accompagne les établissements dans la prise en main et le déploiement.</p></div></div>
+    </div>
+  </div>
+</div></section>
+
+<section id="faq"><div class="wrap narrow">
+  <p class="eyebrow">Les questions que l'on nous pose</p>
+  <h2 style="margin-top:10px">Ce que vous voudrez vérifier avant de vous engager.</h2>
+  <div class="faq">
+    <details><summary>Où sont nos données, et qui les protège ?</summary><p>Les données de chaque établissement sont hébergées en France, dans une base séparée de l'application, sauvegardée chaque jour, conforme au RGPD. La saisie mensuelle est la seule porte d'entrée : rien ne se connecte à votre banque ni à votre logiciel comptable sans vous.</p></details>
+    <details><summary>Qui voit quoi, entre l'établissement et la coordination ?</summary><p>C'est l'établissement qui choisit ce qui remonte au niveau national, ligne par ligne. Une version entièrement étanche existe pour une Alliance qui ne souhaite pas partager. À l'intérieur d'un établissement, chaque profil a son niveau d'accès.</p></details>
+    <details><summary>Et si nous arrêtons ?</summary><p>Vous exportez tout, à tout moment, en PDF et en CSV : l'historique, les budgets, les rapports. Vous n'êtes pas prisonnier du logiciel.</p></details>
+    <details><summary>Sur quels standards les calculs reposent-ils ?</summary><p>Sur ceux de la Fondation des Alliances Françaises et du ministère : mêmes catégories, mêmes modes de calcul, mis à jour quand leurs questionnaires évoluent. C'est ce qui permet de pré-remplir le questionnaire annuel et la fiche pays.</p></details>
+    <details><summary>En quelle langue, sur quel appareil, avec quelle assistance ?</summary><p>En ligne, sur ordinateur et téléphone, en français et en anglais, d'autres langues à la demande. Une assistance est comprise pendant la mise en route, puis selon la formule choisie.</p></details>
+    <details><summary>Le projet est-il « éligible » ?</summary><p>C'est le comité de l'Institut français qui en décide. Ce que nous fournissons : des paragraphes écrits dans le vocabulaire de l'appel, avec des indicateurs mesurables, et un outil qui tourne déjà dans des Alliances.</p></details>
+  </div>
+</div></section>
+
+<section class="final" id="contact"><div class="wrap">
+  <div class="box">
+    <div>
+      <p class="eyebrow">Parlons-en</p>
+      <h2 style="margin-top:10px">Une démonstration avec vos chiffres, ou les paragraphes pour votre dossier : écrivez-nous.</h2>
+      <p class="lede" style="margin-top:16px">Répondez simplement à notre message, ou écrivez-nous à l'adresse ci-contre. Nous revenons vers vous sous 24 heures.</p>
+    </div>
+    <div class="contact">
+      <div class="mailbox">
+        <span class="k">Écrivez-nous</span>
+        <span class="addr" id="addr">contact@pilotaf.app</span>
+        <button class="btn" type="button" id="copy">Copier l'adresse</button>
+        <span class="hint" id="hint">Objet suggéré : « PAF 2027, volet PilotAF »</span>
+      </div>
+    </div>
+  </div>
+</div></section>
+<script>
+(function(){
+  var b=document.getElementById('copy'),h=document.getElementById('hint'),a=document.getElementById('addr').textContent;
+  b.addEventListener('click',function(){
+    function done(){b.textContent='Adresse copiée';h.textContent='Collez-la dans votre messagerie, nous répondons sous 24 heures.';setTimeout(function(){b.textContent="Copier l'adresse";},3000);}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(a).then(done,function(){fallback();});}else{fallback();}
+    function fallback(){var r=document.createRange();r.selectNodeContents(document.getElementById('addr'));var s=window.getSelection();s.removeAllRanges();s.addRange(r);try{document.execCommand('copy');done();}catch(e){h.textContent='Sélectionnez l\'adresse et copiez-la.';}}
+  });
+})();
+</script>
+
+<footer><div class="wrap">
+  <span>PilotAF · Outil de pilotage pour les Alliances Françaises et les Instituts français</span>
+  <span>Données hébergées en France · Export complet à tout moment</span>
+</div></footer>
+
+</body></html>
