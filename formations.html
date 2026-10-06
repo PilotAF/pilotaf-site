@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="color-scheme" content="light only">
+<title>Formations · PilotAF</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#FBFAF7; --surface:#FFFFFF; --ink:#1C1F26; --ink-2:#4A4F5A; --muted:#7A7F8A;
+  --line:#E4E1DA; --line-2:#D2CEC5; --accent:#C8102E; --accent-ink:#FFFFFF; --accent-soft:#FBEAEA;
+  --marine:#1F3A5F; --marine-soft:#E8EEF5; --ok:#1E7A4B; --ok-soft:#E4F3EA;
+  --shadow:0 1px 2px rgba(28,31,38,.06), 0 8px 24px rgba(28,31,38,.06);
+}
+*{box-sizing:border-box}
+body{margin:0;color-scheme:light;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:"Newsreader",Georgia,"Times New Roman",serif;font-weight:500;line-height:1.15;margin:0;text-wrap:balance;letter-spacing:-.005em}
+h1{font-size:clamp(34px,5vw,52px)}
+h2{font-size:clamp(26px,3.4vw,36px)}
+h3{font-size:22px}
+p{margin:0}
+a{color:inherit}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+.narrow{max-width:720px}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.lede{font-size:20px;color:var(--ink-2);line-height:1.5}
+section{padding:68px 0}
+section+section{border-top:1px solid var(--line)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--accent);color:var(--accent-ink);text-decoration:none;font-weight:600;font-size:16px;padding:14px 22px;border-radius:6px;border:0;cursor:pointer}
+.btn:hover{filter:brightness(1.08)}
+.btn:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var(--marine);outline-offset:3px}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line-2)}
+
+header.top{padding:22px 0;border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.left{display:flex;align-items:center;gap:22px}
+.logo{display:inline-flex;text-decoration:none}
+.logo .pill{display:flex;align-items:center;gap:9px;background:#C41230;color:#fff;border-radius:10px;padding:7px 14px;height:42px;font-family:-apple-system,"system-ui","Segoe UI",sans-serif}
+.logo .bars{display:flex;align-items:flex-end;gap:2px;height:18px}
+.logo .bars i{display:block;width:3px;background:#fff;border-radius:1px}
+.logo .bars i:nth-child(1){height:7px}.logo .bars i:nth-child(2){height:13px}.logo .bars i:nth-child(3){height:18px}
+.logo .stack{display:flex;flex-direction:column;line-height:1}
+.logo .name{font-size:18px;font-weight:800;letter-spacing:-.02em}
+.logo .sub{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;opacity:.8;margin-top:2px}
+nav.menu{display:flex;gap:4px}
+nav.menu a{font-size:15px;font-weight:500;text-decoration:none;color:var(--ink-2);padding:7px 12px;border-radius:8px}
+nav.menu a:hover{background:var(--accent-soft);color:var(--ink)}
+nav.menu a[aria-current]{background:var(--ink);color:#fff}
+.top a.cta{font-size:15px;font-weight:600;text-decoration:none;color:var(--accent)}
+
+.hero{padding:88px 0 56px;text-align:center}
+.hero .wrap{max-width:780px}
+.hero .sub{margin-top:20px;font-family:"Newsreader",Georgia,serif;font-size:clamp(21px,3vw,28px);line-height:1.3;color:var(--ink)}
+.hero .lede{margin-top:24px}
+.hero .actions{margin-top:28px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+/* deux offres */
+.combo{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
+.combo-card{display:block;text-decoration:none;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px;box-shadow:var(--shadow)}
+.combo-card:hover{border-color:var(--accent)}
+.combo-card .tag{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.combo-card h3{font-size:22px;margin:8px 0 6px}
+.combo-card p{color:var(--ink-2);font-size:15px}
+.combo-card .go{margin-top:12px;display:inline-block;color:var(--accent);font-weight:600;font-size:15px}
+.combo-note{margin-top:18px;text-align:center;color:var(--ink-2);font-size:15.5px;max-width:720px;margin-left:auto;margin-right:auto}
+
+.prose{margin-top:18px}
+.prose p{color:var(--ink-2);margin-top:14px;font-size:17px}
+
+/* formateur */
+.person{display:grid;grid-template-columns:72px 1fr;gap:18px;align-items:start;margin-top:26px;max-width:860px}
+.person .av{width:72px;height:72px;border-radius:50%;object-fit:cover;background:var(--marine-soft)}
+.person h3{font-size:19px;font-family:"IBM Plex Sans",sans-serif;font-weight:600}
+.person p{font-size:16px;color:var(--ink-2);margin-top:6px}
+
+/* formats */
+.inc{margin-top:30px;display:grid;grid-template-columns:repeat(3,1fr);gap:22px 28px}
+.inc div{padding-top:16px;border-top:2px solid var(--line-2)}
+.inc strong{display:block;font-weight:600;margin-bottom:4px}
+.inc p{font-size:15px;color:var(--ink-2)}
+
+/* programmes */
+.prog{display:flex;flex-direction:column;gap:18px;margin-top:28px}
+.course{background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
+.course.hi{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft),var(--shadow)}
+.course-h{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:20px 24px;border-bottom:1px solid var(--line);background:var(--marine-soft);flex-wrap:wrap}
+.course-h h3{font-size:23px}
+.course-h .dur{font-size:13px;font-weight:600;color:var(--marine);background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px 13px;white-space:nowrap}
+.day{padding:16px 24px;border-top:1px solid var(--line)}
+.day:first-of-type{border-top:0}
+.day .dh{font-weight:600;color:var(--ink);margin-bottom:7px;font-size:15.5px}
+.day .dh b{color:var(--accent);font-weight:700;margin-right:8px}
+.day ul{margin:0;padding-left:20px;color:var(--ink-2);font-size:15.5px;line-height:1.55}
+.day li{margin:5px 0}
+.course .opt{padding:20px 24px;color:var(--ink-2);font-size:16px}
+.course .opt ol{margin:10px 0 0;padding-left:22px}
+.course .opt li{margin:4px 0}
+
+/* tableaux de tarifs & modules */
+.ptable{width:100%;border-collapse:collapse;margin-top:14px;background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;font-size:15px}
+.ptable th,.ptable td{text-align:left;padding:12px 16px;border-bottom:1px solid var(--line);vertical-align:top}
+.ptable thead th{background:var(--marine-soft);color:var(--marine);font-weight:600;font-size:12.5px;letter-spacing:.03em;text-transform:uppercase}
+.ptable tbody tr:last-child td{border-bottom:0}
+.ptable td.p{text-align:right;white-space:nowrap;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums;font-family:"Newsreader",Georgia,serif;font-size:17px}
+.ptable th.p{text-align:right}
+.ptable td .d{display:block;font-size:13px;color:var(--muted);font-weight:400;margin-top:3px;font-family:"IBM Plex Sans",sans-serif}
+.ptable .mdur{text-align:right;white-space:nowrap;color:var(--ink-2);font-weight:600}
+.tar-h{font-size:20px;margin:34px 0 0}
+.tar-h:first-of-type{margin-top:22px}
+.tar-note{color:var(--ink-2);font-size:15px;margin-top:8px}
+.tag-elig{display:inline-block;font-size:12px;font-weight:600;color:var(--ok);background:var(--ok-soft);border-radius:999px;padding:3px 10px;margin-left:8px;vertical-align:middle}
+
+.final{background:var(--surface);text-align:center}
+.final .wrap{max-width:680px}
+.final .mailbox{display:flex;flex-direction:column;gap:10px;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:20px;margin:22px auto 0;width:min(100%,520px);align-items:center}
+.final .mailbox .k{font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--muted)}
+.final .mailbox .addr{font-family:"Newsreader",Georgia,serif;font-size:26px;color:var(--ink);word-break:break-all;user-select:all;text-decoration:none}
+.final .mailbox .hint{font-size:13px;color:var(--muted)}
+footer{padding:28px 0 40px;font-size:13px;color:var(--muted);border-top:1px solid var(--line)}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+@media (max-width:760px){
+  section{padding:48px 0}
+  .hero{padding:56px 0 36px}
+  .combo{grid-template-columns:1fr}
+  .inc{grid-template-columns:1fr}
+  .person{grid-template-columns:56px 1fr;gap:14px}
+  .person .av{width:56px;height:56px}
+  .ptable{display:block;overflow-x:auto}
+  .top a.cta{display:none}
+  nav.menu a{padding:6px 10px}
+}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <div class="left">
+    <a class="logo" href="./" aria-label="PilotAF"><span class="pill"><span class="bars"><i></i><i></i><i></i></span><span class="stack"><span class="name">PilotAF</span><span class="sub">Tableau de bord</span></span></span></a>
+    <nav class="menu" aria-label="Pages"><a href="./">L'outil</a><a href="formations.html" aria-current="page">Formations</a><a href="tarifs.html">Tarifs</a></nav>
+  </div>
+  <a class="cta" href="#contact">Nous écrire →</a>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <p class="eyebrow">Formations &amp; accompagnement</p>
+  <h1 style="margin-top:14px">Former les équipes qui pilotent les Alliances</h1>
+  <p class="sub">La gestion financière et la direction d'une Alliance Française, transmises par un ancien directeur et coordinateur de réseau.</p>
+  <p class="lede">Des formations destinées aux directions, aux équipes administratives et aux membres de conseils d'administration, construites à partir du référentiel démarche qualité de l'Institut français et de la Fondation Alliance Française.</p>
+  <div class="actions">
+    <a class="btn" href="#programmes">Voir les formations</a>
+    <a class="btn ghost" href="#tarifs">Voir les tarifs</a>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <p class="eyebrow" style="text-align:center">Deux offres, complémentaires</p>
+  <div class="combo">
+    <a class="combo-card" href="./">
+      <span class="tag">Le logiciel</span>
+      <h3>PilotAF, le tableau de bord</h3>
+      <p>Budget prévisionnel, projection, rapports et questionnaires pré-remplis : le pilotage financier de votre Alliance au quotidien.</p>
+      <span class="go">Voir l'outil →</span>
+    </a>
+    <a class="combo-card" href="#programmes">
+      <span class="tag">Les formations</span>
+      <h3>Former &amp; accompagner les équipes</h3>
+      <p>Diriger une Alliance, gestion financière, autonomie : des parcours et des modules adaptés à votre contexte.</p>
+      <span class="go">Voir les formations →</span>
+    </a>
+  </div>
+  <p class="combo-note">Les deux se combinent : une formation construite sur vos propres chiffres, prolongée par l'outil qui les pilote toute l'année.</p>
+</div></section>
+
+<section><div class="wrap narrow">
+  <p class="eyebrow">La démarche</p>
+  <h2>Accompagner la professionnalisation du réseau</h2>
+  <div class="prose">
+    <p>PilotAF propose des formations destinées aux directions, aux équipes administratives et aux membres de conseils d'administration d'Alliances Françaises. Elles s'appuient notamment sur le référentiel démarche qualité de l'Institut français et de la Fondation Alliance Française.</p>
+    <p>Leur objectif est d'accompagner la professionnalisation des établissements du réseau : gouvernance, pratiques de gestion, publics et usages. Ces formations peuvent être organisées pour un établissement, un réseau national ou un groupe de pays.</p>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <p class="eyebrow">Le formateur</p>
+  <h2>Sylvain Bano</h2>
+  <div class="person">
+    <img class="av" src="img/sylvain.jpg" alt="Sylvain Bano" width="72" height="72">
+    <div>
+      <p>Sylvain Bano a coordonné le réseau des Alliances Françaises de République tchèque, puis dirigé l'Alliance Française d'Odessa (Ukraine) et celle de Bangkok (Thaïlande). Inspecteur et conseiller de la création au ministère de la Culture, il a conduit plusieurs missions d'audit, dont celle du réseau des Alliances Françaises de province en Thaïlande, et a créé PilotAF, un tableau de bord dédié au pilotage des Alliances Françaises.</p>
+      <p>Il intervient comme formateur et consultant auprès des ministères, des ambassades et des établissements qui souhaitent professionnaliser leur gestion.</p>
+    </div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <p class="eyebrow">Formats</p>
+  <h2>En présentiel, en ligne ou en hybride</h2>
+  <div class="inc">
+    <div><strong>Présentiel</strong><p>Sur place, dans l'établissement ou pour un réseau réuni, en séquences de une à cinq journées.</p></div>
+    <div><strong>En ligne</strong><p>En visioconférence, en sessions ou en modules, pour un ou plusieurs établissements à distance.</p></div>
+    <div><strong>Hybride</strong><p>Une phase à distance et un temps fort sur place, selon le contexte et le calendrier.</p></div>
+  </div>
+  <p class="tar-note" style="margin-top:24px">Les contenus sont adaptés au contexte local et, avec l'accord des établissements, s'appuient sur les données réelles des Alliances participantes.</p>
+</div></section>
+
+<section id="programmes"><div class="wrap">
+  <p class="eyebrow">Les formations</p>
+  <h2>Deux parcours, et des modules à la carte</h2>
+  <div class="prog">
+
+    <div class="course hi">
+      <div class="course-h"><h3>Formation 1 — Diriger une Alliance Française</h3><span class="dur">5 jours · une prise en main concrète</span></div>
+      <div class="day"><div class="dh"><b>Jour 1</b>Cadre et méthode</div><ul>
+        <li>Gouvernance associative : principes fondateurs, charte, statuts, rôle du CA, du bureau et de l'AG, articulation entre président et directeur</li>
+        <li>La démarche qualité : fondements, points d'attention, autodiagnostic de son établissement</li>
+      </ul></div>
+      <div class="day"><div class="dh"><b>Jour 2</b>Ancrage et cadre légal</div><ul>
+        <li>Le droit local, passage obligé : droit du travail, fiscalité, réglementation de l'enseignement, immigration, locaux</li>
+        <li>L'ancrage local : construire son réseau et jouer sur l'effet levier des partenariats</li>
+        <li>Gestion financière : règles de base et outils du quotidien</li>
+      </ul></div>
+      <div class="day"><div class="dh"><b>Jour 3</b>Finances et équipes</div><ul>
+        <li>Construire un budget prévisionnel et renforcer son autofinancement</li>
+        <li>Ressources humaines : règles et bonnes pratiques</li>
+      </ul></div>
+      <div class="day"><div class="dh"><b>Jour 4</b>Pédagogie et culturel</div><ul>
+        <li>Offre pédagogique : concevoir une offre attractive et rentable</li>
+        <li>Politique culturelle : la définir, la professionnaliser et la relier à l'activité du centre de langue</li>
+      </ul></div>
+      <div class="day"><div class="dh"><b>Jour 5</b>Les autres services et conclusion</div><ul>
+        <li>Médiathèque, traduction, restauration : internaliser ou externaliser, vers une offre de services durable</li>
+        <li>Plan d'action et conclusion : chaque participant repart avec un plan d'actions à 12 mois construit à partir de son autodiagnostic</li>
+      </ul></div>
+    </div>
+
+    <div class="course">
+      <div class="course-h"><h3>Formation 2 — Gestion financière et autonomie financière</h3><span class="dur">3 jours</span></div>
+      <div class="day"><div class="dh"><b>Jour 1</b>Les bases</div><ul>
+        <li>Principes fondamentaux de la gestion d'une Alliance</li>
+        <li>Outils et bonnes pratiques : trésorerie, autofinancement, rentabilité, subventions…</li>
+        <li>Lecture des résultats comptables passés (sur les données des Alliances participantes, si elles l'acceptent)</li>
+      </ul></div>
+      <div class="day"><div class="dh"><b>Jour 2</b>Piloter</div><ul>
+        <li>Vers une comptabilité analytique, l'outil du directeur</li>
+        <li>Tableaux de bord, seuils de rentabilité, typologie des cours, services et produits en vente</li>
+      </ul></div>
+      <div class="day"><div class="dh"><b>Jour 3</b>Anticiper</div><ul>
+        <li>Élaborer son budget prévisionnel et le présenter au CA</li>
+        <li>Conclusion : fixer des objectifs d'autofinancement chiffrés</li>
+      </ul></div>
+    </div>
+
+    <div class="course">
+      <div class="course-h"><h3>Option — Prise en main de PilotAF</h3><span class="dur">1 à 2 journées</span></div>
+      <div class="opt">
+        Découverte de l'outil et de ses trois piliers :
+        <ol>
+          <li>conserver des données harmonisées ;</li>
+          <li>automatiser les rapports (CA, AG, ambassade, Fondation) ;</li>
+          <li>projeter la trajectoire financière de son établissement.</li>
+        </ol>
+      </div>
+    </div>
+
+  </div>
+</div></section>
+
+<section id="modules"><div class="wrap narrow">
+  <p class="eyebrow">À la carte</p>
+  <h2>Modules</h2>
+  <p class="tar-note">Chaque module peut être suivi seul ou combiné à un parcours, en présentiel ou en ligne.</p>
+  <table class="ptable">
+    <thead><tr><th>Module</th><th class="p">Durée</th></tr></thead>
+    <tbody>
+      <tr><td>Gouvernance associative : CA, AG, bureau, délégations, relation président-directeur</td><td class="mdur">1 j</td></tr>
+      <tr><td>S'approprier la démarche qualité : autoévaluation, référents, plan d'actions</td><td class="mdur">½ j</td></tr>
+      <tr><td>Droit local : travail, fiscalité, enseignement, immigration, locaux</td><td class="mdur">1 j</td></tr>
+      <tr><td>Ancrage local et partenariats : conventions, ambassade, effet levier</td><td class="mdur">½ j</td></tr>
+      <tr><td>Gestion financière au quotidien : trésorerie, caisse, contrôle interne</td><td class="mdur">1 j</td></tr>
+      <tr><td>Budget prévisionnel et autofinancement</td><td class="mdur">1 j</td></tr>
+      <tr><td>Comptabilité analytique et seuils de rentabilité</td><td class="mdur">1 j</td></tr>
+      <tr><td>Ressources humaines : contrats, statuts des enseignants, entretiens, formation</td><td class="mdur">1 j</td></tr>
+      <tr><td>Offre pédagogique et rentabilité</td><td class="mdur">1 j</td></tr>
+      <tr><td>Politique culturelle</td><td class="mdur">½ à 1 j</td></tr>
+      <tr><td>Médiathèque, traduction, restauration : internaliser ou externaliser</td><td class="mdur">½ j</td></tr>
+      <tr><td>Diversifier ses ressources : mécénat, parrainage, financement participatif</td><td class="mdur">1 j</td></tr>
+      <tr><td>Prospective et scénarios de développement : modéliser la trajectoire de son établissement</td><td class="mdur">1 j</td></tr>
+    </tbody>
+  </table>
+</div></section>
+
+<section id="tarifs"><div class="wrap">
+  <p class="eyebrow">Tarifs</p>
+  <h2>Des tarifs clairs, confirmés sur devis</h2>
+  <p class="tar-note">Tarifs indicatifs, en honoraires HT, confirmés sur devis selon le contexte et le nombre d'établissements.</p>
+
+  <h3 class="tar-h">Parcours réseau <span class="tag-elig">Éligibles au Plan d'appui à la formation</span></h3>
+  <table class="ptable">
+    <thead><tr><th>Parcours</th><th>Contenu</th><th class="p">Tarif</th></tr></thead>
+    <tbody>
+      <tr><td><strong>1 / Diriger une Alliance Française</strong></td><td>Formation de 5 jours, suivi de 3 mois (pour 6 à 12 participants)</td><td class="p">à partir de 7 800 €</td></tr>
+      <tr><td><strong>2 / Autonomie financière</strong></td><td>Analyse préalable des comptes, formation de 3 jours, modules « Mécénat » et « Prospective », suivi de 3 mois</td><td class="p">à partir de 7 900 €</td></tr>
+      <tr><td><strong>3 / À la carte</strong></td><td>Un ou plusieurs modules, en ligne ou en présentiel</td><td class="p">sur devis</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="tar-h">Formations</h3>
+  <table class="ptable">
+    <thead><tr><th>Formation</th><th class="p">Présentiel</th><th class="p">En ligne</th></tr></thead>
+    <tbody>
+      <tr><td>Diriger une Alliance Française (5 jours)</td><td class="p">4 500 €</td><td class="p">3 600 €</td></tr>
+      <tr><td>Gestion financière et autonomie financière (3 jours)</td><td class="p">3 200 €</td><td class="p">2 500 €</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="tar-h">Modules à la carte</h3>
+  <table class="ptable">
+    <thead><tr><th>Format</th><th class="p">Présentiel</th><th class="p">En ligne</th></tr></thead>
+    <tbody>
+      <tr><td>Module d'une journée</td><td class="p">950 €</td><td class="p">750 €</td></tr>
+      <tr><td>Module d'une demi-journée</td><td class="p">550 €</td><td class="p">400 €</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="tar-h">Accompagnement individuel d'une direction</h3>
+  <table class="ptable">
+    <thead><tr><th>Format</th><th class="p">Tarif</th></tr></thead>
+    <tbody>
+      <tr><td>2 jours sur place</td><td class="p">1 500 €</td></tr>
+      <tr><td>6 séances de 1 h 30 en ligne</td><td class="p">900 €</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="tar-h">PilotAF</h3>
+  <table class="ptable">
+    <thead><tr><th>Prestation</th><th class="p">Tarif</th></tr></thead>
+    <tbody>
+      <tr><td>Prise en main de l'outil (½ journée)</td><td class="p">incluse<span class="d">pour les Alliances équipées, sinon 400 €</span></td></tr>
+      <tr><td>Équipement des Alliances participant à un parcours</td><td class="p">conditions<span class="d">préférentielles</span></td></tr>
+    </tbody>
+  </table>
+</div></section>
+
+<section class="final" id="contact"><div class="wrap">
+  <p class="eyebrow">Parlons-en</p>
+  <h2>Un projet de formation pour votre Alliance ou votre réseau ?</h2>
+  <p class="lede" style="margin-top:14px">Décrivez-nous votre contexte : nous construisons un parcours adapté et un devis. Réponse sous 24 heures.</p>
+  <div class="mailbox">
+    <span class="k">Écrivez-nous</span>
+    <a class="addr" href="mailto:contact@pilotaf.app?subject=Formation%20PilotAF">contact@pilotaf.app</a>
+    <span class="hint">Objet suggéré : « Formation PilotAF »</span>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <span>PilotAF · Outil de pilotage et formations pour les Alliances Françaises et les Instituts français</span>
+  <span>PilotAF est un outil indépendant, non affilié à la Fondation des Alliances Françaises</span>
+</div></footer>
+</body>
+</html>
