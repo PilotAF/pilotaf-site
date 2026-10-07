@@ -329,6 +329,12 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .offer-card .go{margin-top:12px;display:inline-block;color:var(--accent);font-weight:600;font-size:15px}
 .offers-note{margin-top:16px;text-align:center;color:var(--ink-2);font-size:15px}
 @media(max-width:760px){.offers-grid{grid-template-columns:1fr}}
+.top .right{display:flex;align-items:center;gap:18px}
+.flink{text-decoration:none}
+.flink .stack{align-items:flex-end}
+.flink .cap{display:inline-flex;align-items:center}
+@media(max-width:860px){header.top .wrap{flex-wrap:wrap;row-gap:12px}.top .right{margin-left:auto}}
+@media(max-width:520px){.flink .sub{display:none}}
 </style>
 </head>
 <body>
@@ -340,14 +346,17 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   <a class="logo" href="#" aria-label="PilotAF"><span class="pill"><span class="bars"><i></i><i></i><i></i></span><span class="stack"><span class="name">PilotAF</span><span class="sub">Tableau de bord</span></span></span></a>
     <nav class="menu" aria-label="Pages"><a href="#" aria-current="page">L'outil</a><a href="formations.html">Formations</a><a href="tarifs.html">Tarifs</a></nav>
   </div>
-  <a class="cta" href="#contact">Nous écrire →</a>
+  <div class="right">
+    <a class="cta" href="#contact">Nous écrire →</a>
+    <a class="logo flink" href="formations.html" aria-label="Les formations AF et IF"><span class="pill"><span class="stack"><span class="name">Les formations</span><span class="sub">AF et IF</span></span><span class="cap" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 2 9l10 5 10-5-10-5z"/><path d="M6 11.5V15c0 1.1 2.7 3 6 3s6-1.9 6-3v-3.5"/></svg></span></span></a>
+  </div>
 </div></header>
 
 <section class="hero"><div class="wrap hero-grid">
   <div class="hero-head">
-    <p class="eyebrow">Pour les Alliances et les Instituts français</p>
-    <h1 id="hero-title">Suivez la trajectoire de votre Alliance</h1>
-    <p class="lede">PilotAF est un logiciel de pilotage financier et statistique élaboré spécifiquement pour les Alliances et les Instituts français, conçu par un ancien directeur et coordinateur d'Alliance. Budget prévisionnel, scénarios, rapports et questionnaires pré-remplis, sur ordinateur, tablette et sur téléphone.</p>
+    <p class="eyebrow">Pour les Alliances Françaises</p>
+    <h1 id="hero-title">Optimisez le pilotage de votre Alliance</h1>
+    <p class="lede">PilotAF est un logiciel de pilotage financier et statistique élaboré spécifiquement pour les Alliances Françaises, conçu par un ancien directeur et coordinateur d'Alliances. Budget prévisionnel, scénarios de développements, rapports et questionnaires pré-remplis, sur ordinateur, tablette et sur téléphone. Sans travail supplémentaire.</p>
     <div class="actions">
       <a class="btn" href="#ecrans">Voir l'outil</a>
       <a class="btn ghost" href="#contact">Demander une démonstration</a>
@@ -485,11 +494,11 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
         <div class="tint-pane" id="cp-partage">
           <div class="tint-title">Partage avec la coordination <span class="coord-hint">Essayez : coupez une Alliance</span></div>
           <ul class="coord-list" id="coord-list">
-            <li data-students="552" data-inscr="693" data-cert="278" data-af="90"><span class="name">Colombo</span><span class="sub">552 étudiants · autofinancement 90 %</span><label class="sw"><input type="checkbox" checked><i></i></label></li>
-            <li data-students="244" data-inscr="306" data-cert="122" data-af="84"><span class="name">Kandy</span><span class="sub">244 étudiants · 84 %</span><label class="sw"><input type="checkbox" checked><i></i></label></li>
-            <li data-students="122" data-inscr="153" data-cert="61" data-af="88"><span class="name">Jaffna</span><span class="sub">122 étudiants · 88 %</span><label class="sw"><input type="checkbox" checked><i></i></label></li>
-            <li data-students="98" data-inscr="123" data-cert="50" data-af="81"><span class="name">Matara</span><span class="sub">98 étudiants · 81 %</span><label class="sw"><input type="checkbox" checked><i></i></label></li>
-            <li data-students="87" data-inscr="109" data-cert="44" data-af="90"><span class="name">Malé</span><span class="sub">87 étudiants · 90 %</span><label class="sw"><input type="checkbox" checked><i></i></label></li>
+            <li data-students="552" data-inscr="693" data-cert="278" data-af="90"><span class="name">Armorique</span><span class="sub">552 étudiants · autofinancement 90 %</span><label class="sw"><input type="checkbox" checked><i></i></label></li>
+            <li data-students="244" data-inscr="306" data-cert="122" data-af="84"><span class="name">Val-Doré</span><span class="sub">244 étudiants · 84 %</span><label class="sw"><input type="checkbox" checked><i></i></label></li>
+            <li data-students="122" data-inscr="153" data-cert="61" data-af="88"><span class="name">Belrive</span><span class="sub">122 étudiants · 88 %</span><label class="sw"><input type="checkbox" checked><i></i></label></li>
+            <li data-students="98" data-inscr="123" data-cert="50" data-af="81"><span class="name">Pierrelune</span><span class="sub">98 étudiants · 81 %</span><label class="sw"><input type="checkbox" checked><i></i></label></li>
+            <li data-students="87" data-inscr="109" data-cert="44" data-af="90"><span class="name">Monterai</span><span class="sub">87 étudiants · 90 %</span><label class="sw"><input type="checkbox" checked><i></i></label></li>
           </ul>
           <div class="coord-totals">
             <div><span class="k">Vu par la coordination</span><strong id="ct-n">5</strong><span class="s">Alliances sur 5</span></div>
@@ -554,7 +563,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
       <blockquote style="margin-top:28px">« Beaucoup d'Alliances commencent l'année sans savoir où elles vont. Le budget prévisionnel n'est pas un rapport de plus, c'est ce qui permet de dire non à temps. »<div class="who">Sylvain, à l'origine de PilotAF</div></blockquote>
     </div>
     <div class="people">
-      <div class="person"><img class="av" src="img/sylvain.jpg" alt="Sylvain" width="56" height="56"><div><h3>Sylvain</h3><p>Ancien directeur d'Alliance Française (Bangkok, Odessa) et coordinateur national en ambassade pendant plus de dix ans. A participé à l'élaboration de la démarche qualité du ministère. Il a écrit PilotAF pour son propre pilotage avant de l'ouvrir au réseau.</p></div></div>
+      <div class="person"><img class="av" src="img/sylvain.jpg" alt="Sylvain" width="56" height="56"><div><h3>Sylvain</h3><p>Ancien directeur d'Alliance Française (Bangkok, Odessa) et coordinateur national du réseau des AFs de République tchèque, Sylvain a participé à l'élaboration de la démarche qualité dès 2010. Il a développé progressivement PilotAF pour son propre travail de direction et de consultant, avant de l'ouvrir au réseau.</p></div></div>
       <div class="person"><img class="av" src="img/pauline.jpg" alt="Pauline" width="56" height="56"><div><h3>Pauline</h3><p>Responsable des services numériques à l'Alliance française de Bangkok pendant deux ans, aujourd'hui auto-entrepreneuse en marketing et communication. Elle accompagne les établissements dans la prise en main et le déploiement.</p></div></div>
     </div>
   </div>
