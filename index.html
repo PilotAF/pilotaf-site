@@ -368,7 +368,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .kpi .v.ok,.kpi .d.ok{color:var(--ok)}
 .kpi .d{font-size:10.5px;color:var(--muted)}
 .kpi .d.up{color:var(--ok)}
-.dash-chart{display:block;width:100%;height:auto;margin-top:10px}
+.dash-chart{display:block;width:100%;height:auto;margin-top:8px}
 .dash .ln{stroke-dasharray:600;stroke-dashoffset:600}
 .dash .ln.pr{stroke-dasharray:4 4;stroke-dashoffset:0;opacity:0}
 .dash .dot{opacity:0}
@@ -381,6 +381,29 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 @media(max-width:860px){.kpi .v{font-size:18px}}
 @media(max-width:600px){.phone{display:none}}
 @media(max-width:520px){.kpis{grid-template-columns:1fr 1fr}.kpi:last-child{grid-column:1/-1}}
+
+.dash-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:-14px -16px 12px;padding:8px 14px;border-bottom:1px solid var(--line);background:var(--surface)}
+.dash-logo{display:inline-flex;align-items:center;gap:7px;background:#C41230;color:#fff;border-radius:8px;padding:5px 10px;font-family:-apple-system,"system-ui","Segoe UI",sans-serif}
+.dash-logo .bars{display:flex;align-items:flex-end;gap:2px;height:13px}.dash-logo .bars i{display:block;width:2.5px;background:#fff;border-radius:1px}
+.dash-logo .bars i:nth-child(1){height:5px}.dash-logo .bars i:nth-child(2){height:9px}.dash-logo .bars i:nth-child(3){height:13px}
+.dash-logo .stack{display:flex;flex-direction:column;line-height:1}.dash-logo .name{font-size:12.5px;font-weight:800;letter-spacing:-.02em}.dash-logo .sub{font-size:6.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;opacity:.85;margin-top:2px}
+.chips{display:flex;gap:6px;flex-wrap:nowrap;overflow:hidden}
+.chip{font-size:10.5px;font-weight:600;color:var(--accent);border:1px solid #E7B9C1;border-radius:999px;padding:3px 9px;white-space:nowrap;background:var(--surface)}
+.chip.ok{color:var(--ink);border-color:var(--line-2);background:var(--bg);display:inline-flex;align-items:center;gap:5px}
+.chip.ok i{width:9px;height:9px;border-radius:50%;border:2px solid var(--ok);border-right-color:transparent;display:inline-block}
+.dash-id{display:grid;grid-template-columns:.95fr 1.3fr;gap:10px;margin-bottom:12px}
+.dash-photo{display:block;width:100%;height:100%;object-fit:cover;border-radius:8px;border:1px solid var(--line)}
+.dash-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.dash-af{grid-column:1/-1;width:100%;height:auto;display:block;margin:0 0 2px}
+.tile{display:flex;flex-direction:column;gap:2px;border-radius:7px;padding:7px 8px;min-width:0}
+.tile .tk{font-size:9px;font-weight:600;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tile .tv{font-size:14px;font-weight:700;color:var(--ink);line-height:1.15;font-variant-numeric:tabular-nums}
+.tile .tv.small{font-size:9px;font-weight:600;line-height:1.35;color:var(--ink-2)}.tile .okc{color:var(--ok)}
+.tile .td{font-size:8.5px;color:var(--muted);line-height:1.2}
+.t-rose{background:#FDECEF}.t-vert{background:#E6F4EC}.t-gris{background:#F1F1F3}.t-bleu{background:#E8EEF8}.t-sable{background:#FBF1E3}.t-mauve{background:#F0EAF8}
+.dash-t small{font-weight:400;color:var(--muted);font-size:11px;margin-left:6px}
+@media(max-width:860px){.chips .chip:nth-child(n+3){display:none}.dash-t small{display:none}}
+@media(max-width:520px){.dash-id{grid-template-columns:1fr}.dash-photo{aspect-ratio:16/9;height:auto}.dash-tiles{grid-template-columns:repeat(2,1fr)}.tile:first-child{grid-column:1/-1}}
 </style>
 </head>
 <body>
@@ -413,7 +436,23 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     <figure class="frame big mac dashf">
       <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>pilotaf.app · Alliance Française de Chiang Mai (démo)</span></div>
       <div class="dash" id="dash">
-        <div class="dash-top"><span class="dash-t">Projection 2026</span><span class="dash-badge">Compléter · 86 %</span></div>
+        <div class="dash-bar">
+          <span class="dash-logo"><span class="bars"><i></i><i></i><i></i></span><span class="stack"><span class="name">PilotAF</span><span class="sub">Tableau de bord</span></span></span>
+          <span class="chips"><span class="chip ok"><i></i>Compléter · 86 %</span><span class="chip">Saisie ▾</span><span class="chip">Rapports ▾</span><span class="chip">Exporter ▾</span></span>
+        </div>
+        <div class="dash-id">
+          <img class="dash-photo" src="img/dash-photo.jpg" alt="" width="320" height="188">
+          <div class="dash-tiles">
+            <img class="dash-af" src="img/dash-af-logo.png" alt="Alliance française Chiang Mai" width="320" height="46">
+            <div class="tile t-rose"><span class="tk">📈 Finances 2026</span><span class="tv small">R&nbsp;2 316 243 ฿<br>D&nbsp;2 278 242 ฿<br><b class="okc">Rés. +38 000 ฿</b></span></div>
+            <div class="tile t-vert"><span class="tk">📅 Jours de réserve</span><span class="tv">99 j</span><span class="td">Tréso ÷ dép. annuelles</span></div>
+            <div class="tile t-gris"><span class="tk">👥 Inscriptions</span><span class="tv">131</span><span class="td">/ 281 · 47 %</span></div>
+            <div class="tile t-bleu"><span class="tk">⏱ Heures vendues</span><span class="tv">2 892 h</span><span class="td">/ 8 500 h · 34 %</span></div>
+            <div class="tile t-sable"><span class="tk">🎓 Étudiants diff.</span><span class="tv">103</span><span class="td">2026 en cours</span></div>
+            <div class="tile t-mauve"><span class="tk">📄 Certifications</span><span class="tv">52</span><span class="td">/ 70 · 74 %</span></div>
+          </div>
+        </div>
+        <div class="dash-top"><span class="dash-t">Projection 2026 <small>si le reste de l'année continuait au même rythme</small></span><span class="dash-badge chip">Ajuster ▾</span></div>
         <div class="kpis">
           <div class="kpi"><span class="k">Recettes projetées</span><span class="v"><b data-n="4632488">0</b> ฿</span><span class="d up">+1,3 % vs budget</span></div>
           <div class="kpi"><span class="k">Dépenses projetées</span><span class="v"><b data-n="4556483">0</b> ฿</span><span class="d">+0,2 % vs budget</span></div>
