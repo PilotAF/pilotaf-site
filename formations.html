@@ -75,7 +75,7 @@ nav.menu a[aria-current]{background:var(--ink);color:#fff}
 
 /* deux offres */
 .combo{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
-.combo-card{display:block;text-decoration:none;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px 24px;box-shadow:var(--shadow)}
+.combo-card{position:relative;display:block;text-decoration:none;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px 24px;box-shadow:var(--shadow)}
 .combo-card:hover{border-color:var(--accent)}
 .combo-card .tag{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
 .combo-card h3{font-size:21px;margin:8px 0 6px}
@@ -186,8 +186,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 </div></header>
 
 <section class="hero"><div class="wrap">
-  <p class="eyebrow">Formations · équipes de direction</p>
-  <h1 style="margin-top:14px">Des formations à l'intention des équipes de direction</h1>
+  <p class="eyebrow">Formations · Aide à la prise de poste · Audit · Consulting</p>
+  <h1 style="margin-top:14px">Des formations pour les Alliances Françaises,<br>au niveau local comme régional</h1>
   <p class="lede">Gestion financière, pilotage stratégique, démarche qualité, développement culturel, ancrage local : des formations adaptées aux modes de fonctionnement des Alliances Françaises, animées par un ancien directeur et coordinateur.</p>
   <div class="actions">
     <a class="btn" href="#offres">Voir les formations</a>
@@ -198,13 +198,13 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 <section><div class="wrap">
   <p class="eyebrow" style="text-align:center">Deux offres, complémentaires</p>
   <div class="combo">
-    <a class="combo-card" href="./">
+    <a class="combo-card" href="./"><span aria-hidden="true" style="position:absolute;top:18px;right:20px;color:var(--accent)"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span>
       <span class="tag">Le logiciel</span>
       <h3>PilotAF, le tableau de bord</h3>
       <p>Budget prévisionnel, projection, rapports et questionnaires pré-remplis : le pilotage financier de votre Alliance au quotidien.</p>
       <span class="go">Voir l'outil →</span>
     </a>
-    <a class="combo-card" href="#offres">
+    <a class="combo-card" href="#offres"><span aria-hidden="true" style="position:absolute;top:18px;right:20px;color:var(--accent)"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 2 9l10 5 10-5-10-5z"/><path d="M6 11.5V15c0 1.1 2.7 3 6 3s6-1.9 6-3v-3.5"/></svg></span>
       <span class="tag">Les formations</span>
       <h3>Former &amp; accompagner les équipes</h3>
       <p>Diriger une Alliance, pilotage financier, prise en main de l'outil, et des modules à la carte.</p>
@@ -301,21 +301,10 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
 <section id="tarifs"><div class="wrap">
   <p class="eyebrow">Tarifs</p>
-  <h2>Parcours réseau &amp; accompagnement</h2>
+  <h2>Accompagnement personnalisé</h2>
   <p class="tar-note">Tarifs indicatifs, en honoraires HT, confirmés sur devis selon le contexte et le nombre d'établissements.</p>
 
-  <h3 class="tar-h">Parcours réseau</h3>
-  <table class="ptable">
-    <thead><tr><th>Parcours</th><th>Contenu</th><th class="p">Tarif</th></tr></thead>
-    <tbody>
-      <tr><td><strong>1 / Diriger une Alliance Française</strong></td><td>Formation de 5 jours, suivi de 3 mois (6 à 12 participants)</td><td class="p">dès 7 800 €</td></tr>
-      <tr><td><strong>2 / Autonomie financière</strong></td><td>Analyse des comptes, formation de 3 jours, modules « Mécénat » et « Prospective », suivi de 3 mois</td><td class="p">dès 7 900 €</td></tr>
-      <tr><td><strong>3 / Pilotage financier + PilotAF</strong></td><td>Formation de 3 jours, une journée de prise en main, équipement de 3 Alliances (mise en service et deux ans d'abonnement), suivi de 3 mois. Alliance supplémentaire : + 1 290 €</td><td class="p">dès 9 900 €</td></tr>
-      <tr><td><strong>4 / À la carte</strong></td><td>Un ou plusieurs modules, en ligne ou en présentiel</td><td class="p">sur devis</td></tr>
-    </tbody>
-  </table>
-
-  <h3 class="tar-h">Accompagnement individuel d'une direction : audit, formation, aide à la prise de poste, analyse des comptes, élaboration d'un plan d'action</h3>
+  <h3 class="tar-h">Audit · Formation · Accompagnement</h3>
   <table class="ptable">
     <thead><tr><th>Format</th><th class="p">Tarif</th></tr></thead>
     <tbody>
@@ -325,7 +314,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   </table>
   <p class="tar-note" style="margin-top:14px"><em>Les tarifs indiqués correspondent aux frais de service et ne tiennent pas compte des frais de déplacement, d'hébergement et de per diem du formateur, qui devront être pris en charge séparément par le commanditaire.</em></p>
 
-  <p class="tar-note" style="margin-top:18px">Équipement en PilotAF des Alliances participant à un parcours : conditions préférentielles sur <a href="tarifs.html">les tarifs de l'outil</a>.</p>
+  <p class="tar-note" style="margin-top:18px">Équipement en PilotAF des Alliances suivant une formation : conditions préférentielles sur <a href="tarifs.html">les tarifs de l'outil</a>.</p>
 </div></section>
 
 <section><div class="wrap">
